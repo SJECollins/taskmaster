@@ -1,0 +1,12 @@
+<nav class="container-md">
+    <div class="float-end">
+        {% if not user.is_authenticated %}
+            <a data-hx-get="{% url 'accounts:login' %}"
+            data-hx-target="#modal-dialog">Login</a>
+            <a data-hx-get="{% url 'accounts:register' %}"
+            data-hx-target="#modal-dialog">Register</a>
+        {% else %}
+            <a href="{% url 'accounts:logout' %}">Logout</a>
+        {% endif %}
+    </div>
+</nav>
