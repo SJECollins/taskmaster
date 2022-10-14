@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Crete+Round&family=Rubik&display=swap");
+
+/* Custom Variables */
+:root {
+    --site-black: #282828;
+    --site-charcoal: #3a3a3a;
+    --site-yellow: #f9d342;
+    --site-orange: #ff8300;
+    --site-dark-orange: #cc5500;
+    --site-white: #e9e8ea;
+    --site-alt-white: #e7ecef;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--site-charcoal);
+    color: var(--site-white);
+    font-family: "Rubik", sans-serif;
+}
+
+/* Card Styling */
+
+.project-card {
+    height: 500px;
+    width: 320px;
+    background-color: var(--site-black);
+    border-radius: 10px;
+}
+
+.card-header {
+
+}
+
+.card-body {
+    max-height: 240px;
+    overflow-y: scroll;
+
+}
+
+.card-footer {
+
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 4px var(--site-charcoal); 
+border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+background: var(--site-dark-orange); 
+border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: var(--site-orange); 
+}
+
+/* Text Styling */
+
+.headings {
+    font-family: "Crete Round", serif;
+}
+
+.small-ital-text {
+    font-size: 0.5em;
+    font-style: italic;
+}
+
+/* Link and Button Styling*/ 

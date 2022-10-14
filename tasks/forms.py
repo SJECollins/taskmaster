@@ -2,6 +2,10 @@ from django import forms
 from .models import Project, Task, Comment
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project

@@ -2,8 +2,8 @@ from django.db import models
 from accounts.models import CustomUser
 
 
-PRIORITIES = ((0, '!'), (1, '!!'), (2, '!!!'))
-STATUSES = ((0, 'ToDo'), (1, 'In Progress'), (2, 'Done'))
+PRIORITIES = (('!', '!'), ('!!', '!!'), ('!!!', '!!!'))
+STATUSES = (('ToDo', 'ToDo'), ('In Progress', 'In Progress'), ('Done', 'Done'))
 
 
 class Project(models.Model):
@@ -24,8 +24,8 @@ class Task(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     content = models.CharField(max_length=240)
     added_on = models.DateField(auto_now_add=True)
-    priority = models.CharField(max_length=12, choices=PRIORITIES)
-    status = models.CharField(max_length=12, choices=STATUSES)
+    priority = models.CharField(max_length=12, choices=PRIORITIES, default='!')
+    status = models.CharField(max_length=12, choices=STATUSES, default='ToDo')
     edited_on = models.DateField(auto_now=True)
 
     def __str__(self):

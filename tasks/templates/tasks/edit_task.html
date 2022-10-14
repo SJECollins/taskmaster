@@ -1,0 +1,19 @@
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<form data-hx-post="{{ request.path }}" class="modal-content">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h3>Edit Task</h3>
+    </div>
+    <div class="modal-body">
+        {{ form|crispy }}
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary">Update</button>
+    </div>
+
+</form>
+
+{% endblock %}
