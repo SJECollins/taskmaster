@@ -13,7 +13,7 @@ class ProjectList(generic.ListView):
 
 def project_view(request, project_id):
     project = get_object_or_404(Project, id=project_id)
-    tasks = Task.objects.filter(project=project).order_by('-priority')
+    tasks = Task.objects.filter(project=project).order_by('-status', '-priority')
     context = {'project': project, 'tasks': tasks}
     return render(request, 'tasks/project.html', context)
 

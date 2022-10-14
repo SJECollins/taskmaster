@@ -106,6 +106,10 @@ background: var(--site-orange);
     font-style: italic;
 }
 
+.priority {
+    color: var(--site-dark-orange);
+}
+
 /* Link and Button Styling*/ 
 
 a {

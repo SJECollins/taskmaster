@@ -18,10 +18,10 @@
                 <div class="row">
                     <div class="col-sm-7">
                         {% if task.status == 'Done' %}
-                        <p>{{ task.priority }}<s><span class="task-title">{{ task.name }}</span> {{ task.content }}</s>
+                        <p><span class="priority">{{ task.priority }} </span><s><span class="task-title">{{ task.name }}</span> {{ task.content }}</s>
                         </p>
                         {% else %}
-                        <p>{{ task.priority }} <span class="task-title">{{ task.name}}:</span> {{ task.content }}</p>
+                        <p><span class="priority">{{ task.priority }} </span><span class="task-title">{{ task.name}}:</span> {{ task.content }}</p>
                         {% endif %}
                     </div>
                     <div class="col-sm-2">

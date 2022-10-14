@@ -1,6 +1,6 @@
-<h6>Tasks:</h6>
+<h6 class="headings-sm">Tasks:</h6>
 {% for task in tasks %}
-<p>{{ task.priority }}<span class="task-title">{{ task.name }}</span>: {{ task.content }}</p>
+<p><span class="priority">{{task.priority }}</span> <span class="task-title">{{ task.name }}</span>: {{ task.content }}</p>
 {% empty %}
 <p>No tasks yet!</p>
 {% endfor %}

@@ -22,7 +22,8 @@
     <div class="container-md text-center">
         <h1>TaskMaster</h1>
         {% if user.is_authenticated and user.is_active %}
-        <a data-hx-get="{% url 'tasks:add_project' %}"
+        <a class="prj-btn"
+         data-hx-get="{% url 'tasks:add_project' %}"
             data-hx-target="#modal-dialog">New Project</a>
         {% elif user.is_authenticated and not user.is_active %}
         <p>Your account is awaiting approval.</p>
