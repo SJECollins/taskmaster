@@ -1,50 +1,56 @@
 {% block content %}
 
 <div class="modal-content">
-    <div class="modal-header">
-        <h3>{{ project }}</h3>
-        <p>Added by: {{ project.author }} on {{ project.created_on }}</p>
+    <div class="modal-header card-header d-flex flex-column">
+        <h3 class="headings text-center">{{ project }}</h3>
+        <p class="small-ital-text">Added by: {{ project.author }} on {{ project.created_on }}</p>
         <p>Last updated: {{ project.edited_on }}</p>
     </div>
-    <div class="modal-body">
+    <div class="modal-body d-flex flex-column justify-content-evenly">
         <p>{{ project.description}}</p>
         <hr>
         <div>
-
             {% regroup tasks by status as tasks_by_status %}
             {% for status in tasks_by_status %}
-                <div>
-                    <h4>Status: {{ status.grouper }}</h4>
-                    {% for task in status.list %}
+            <div>
+                <h4 class="headings headings-sm">Status: {{ status.grouper }}</h4>
+                {% for task in status.list %}
+                <div class="row">
+                    <div class="col-sm-7">
                         {% if task.status == 'Done' %}
-                        <p>{{ task.priority }}<s><strong>{{ task.name }}</strong> {{ task.content }}</s></p>
+                        <p>{{ task.priority }}<s><span class="task-title">{{ task.name }}</span> {{ task.content }}</s>
+                        </p>
                         {% else %}
-                        <p>{{ task.priority }} <strong>{{ task.name}}:</strong> {{ task.content }}</p>
-                        {% endif %}
-                        <p class="small-ital-text">Added by {{ task.author }} on {{ task.added_on }}</p>
-                    <div>
-                        {% if user.is_authenticated and user == task.author %}
-                        <a data-hx-get="{% url 'tasks:edit_task' task_id=task.id %}"
-                        data-hx-target="#modal-dialog">Edit</a>
-                        <a data-hx-get="{% url 'tasks:delete_task' task_id=task.id %}"
-                        data-hx-target="#modal-dialog">Delete</a>
+                        <p>{{ task.priority }} <span class="task-title">{{ task.name}}:</span> {{ task.content }}</p>
                         {% endif %}
                     </div>
-                    {% empty %}
-                    <p>No tasks yet!</p>
-                    {% endfor %}
+                    <div class="col-sm-2">
+                        <p class="small-ital-text">Added by {{ task.author }} on {{ task.added_on }}</p>
+                    </div>
+                    <div class="col-sm-3">
+                        {% if user.is_authenticated and user == task.author %}
+                        <a class="prj-btn" data-hx-get="{% url 'tasks:edit_task' task_id=task.id %}"
+                            data-hx-target="#modal-dialog">Edit</a>
+                        <a class="prj-btn" data-hx-get="{% url 'tasks:delete_task' task_id=task.id %}"
+                            data-hx-target="#modal-dialog">Delete</a>
+                        {% endif %}
+                    </div>
                 </div>
-                <hr>
+                {% empty %}
+                <p>No tasks yet!</p>
+                {% endfor %}
+            </div>
+            <hr>
             {% endfor %}
         </div>
     </div>
-    <div class="modal-footer">
-        <a data-hx-get="{% url 'tasks:add_task' project_id=project.id %}"
-        data-hx-target="#modal-dialog">Add Task</a>
-        <a data-hx-get="{% url 'tasks:edit_project' project_id=project.id %}"
-        data-hx-target="#modal-dialog">Edit Project</a>
-        <a href="{% url 'tasks:delete_project' project_id=project.id %}">Delete Project</a>
-        <button type="button" data-bs-dismiss="modal">Close</button>
+    <div class="modal-footer card-footer">
+        <a class="prj-btn" data-hx-get="{% url 'tasks:add_task' project_id=project.id %}"
+            data-hx-target="#modal-dialog">Add Task</a>
+        <a class="prj-btn" data-hx-get="{% url 'tasks:edit_project' project_id=project.id %}"
+            data-hx-target="#modal-dialog">Edit Project</a>
+        <a class="prj-btn" href="{% url 'tasks:delete_project' project_id=project.id %}">Delete Project</a>
+        <button type="button" class="prj-btn" data-bs-dismiss="modal">Close</button>
     </div>
 </div>
 

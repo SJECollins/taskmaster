@@ -25,25 +25,44 @@ body {
 
 /* Card Styling */
 
+hr {
+    color: var(--site-yellow);
+}
+
 .project-card {
-    height: 500px;
-    width: 320px;
     background-color: var(--site-black);
     border-radius: 10px;
+    box-shadow: 8px 8px 12px var(--site-black);
+}
+
+.pg-list {
+    height: 500px;
+    width: max(30vw, 320px)
 }
 
 .card-header {
 
 }
 
-.card-body {
+#task-list {
     max-height: 240px;
     overflow-y: scroll;
+}
 
+.pj-lg-body {
+    max-height: 240px;
+    overflow-y: scroll;
 }
 
 .card-footer {
 
+}
+
+/* Modal Styling*/
+.modal-content {
+    background-color: var(--site-black);
+    border-radius: 10px;
+    box-shadow: 8px 8px 12px var(--site-black);
 }
 
 /* Scrollbar Styling */
@@ -69,11 +88,50 @@ background: var(--site-orange);
 
 .headings {
     font-family: "Crete Round", serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+
+.headings-sm {
+    font-size: 1.125em;
+    color: var(--site-yellow);
+}
+
+.task-title {
+    text-transform: uppercase;
 }
 
 .small-ital-text {
-    font-size: 0.5em;
+    font-size: 0.75em;
     font-style: italic;
 }
 
 /* Link and Button Styling*/ 
+
+a {
+    text-decoration: none;
+    color: var(--site-alt-white);
+}
+
+.prj-btn {
+    color: var(--site-alt-white);
+    background-color: transparent;
+    border: 2px solid var(--site-orange);
+    padding:  0.25em 0.5em 0.25em;
+    transition: all 0.5s ease-in-out;
+}
+
+.prj-btn:hover, .prj-btn-active {
+    color: var(--site-black);
+    background-color: var(--site-orange);
+    font-weight: 800;
+    font-style: italic;
+}
+
+/* Media Queries */
+@media (min-width: 1200px) {
+    .project-card {
+        height: 600px;
+        width: 400px;
+    }
+}

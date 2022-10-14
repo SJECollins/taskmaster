@@ -4,12 +4,12 @@
 <div class="container-fluid">
         <div class="row d-flex justify-content-evenly">
             {% for project in project_list %}
-            <div class="project-card col-lg-4 col-md-6 my-4 d-flex flex-column justify-content-evenly">
-                <div class="card-header">
-                    <h3 class="headings text-center"><span class="project-title">{{ project }}</span></h3>
-                    <span class="small-ital-text text-center">Added by: {{ project.author }} on {{ project.created_on }}</span>
+            <div class="project-card pg-list col-lg-4 col-md-6 my-4 d-flex flex-column justify-content-evenly">
+                <div class="card-header text-center">
+                    <h3 class="headings"><span class="project-title">{{ project }}</span></h3>
+                    <span class="small-ital-text">Added by: {{ project.author }} on {{ project.created_on }}</span>
                     <div>
-                        <span class="text-center">Due on: {{ project.due_date|date:'d M Y' }}</span>
+                        <span>Due on: {{ project.due_date|date:'d M Y' }}</span>
                     </div>
                 </div>
                 <div class="card-body">
@@ -19,13 +19,16 @@
                         {% include 'tasks/task_list.html' %}
                     </div>
                 </div>
-                <div class="card-footer d-flex justify-content-evenly mb-2">
-                    <a data-hx-get="{% url 'tasks:project' project_id=project.id %}"
+                <div class="card-footer d-flex justify-content-between mb-2">
+                    <a class="prj-btn"
+                    data-hx-get="{% url 'tasks:project' project_id=project.id %}"
                     data-hx-target="#modal-dialog">View Project</a>
                     {% if user.is_authenticated and user == project.author %}
-                    <a data-hx-get="{% url 'tasks:edit_project' project_id=project.id %}"
+                    <a class="prj-btn"
+                    data-hx-get="{% url 'tasks:edit_project' project_id=project.id %}"
                     data-hx-target="#modal-dialog">Edit Project</a>
-                    <a href="{% url 'tasks:delete_project' project_id=project.id %}">Delete</a>
+                    <a class="prj-btn"
+                    href="{% url 'tasks:delete_project' project_id=project.id %}">Delete</a>
                     {% endif %}
                 </div>
             </div>
