@@ -16,24 +16,30 @@
                 <h4 class="headings headings-sm">Status: {{ status.grouper }}</h4>
                 {% for task in status.list %}
                 <div class="row">
-                    <div class="col-sm-7">
+                    <div class="col-lg-7">
                         {% if task.status == 'Done' %}
-                        <p><span class="priority">{{ task.priority }} </span><s><span class="task-title">{{ task.name }}</span> {{ task.content }}</s>
+                        <p><span class="priority">{{ task.priority }} </span><s><span
+                                    class="task-title">{{ task.name }}</span> {{ task.content }}</s>
                         </p>
                         {% else %}
-                        <p><span class="priority">{{ task.priority }} </span><span class="task-title">{{ task.name}}:</span> {{ task.content }}</p>
+                        <p><span class="priority">{{ task.priority }} </span><span
+                                class="task-title">{{ task.name}}:</span> {{ task.content }}</p>
                         {% endif %}
                     </div>
-                    <div class="col-sm-2">
-                        <p class="small-ital-text">Added by {{ task.author }} on {{ task.added_on }}</p>
-                    </div>
-                    <div class="col-sm-3">
-                        {% if user.is_authenticated and user == task.author %}
-                        <a class="prj-btn" data-hx-get="{% url 'tasks:edit_task' task_id=task.id %}"
-                            data-hx-target="#modal-dialog">Edit</a>
-                        <a class="prj-btn" data-hx-get="{% url 'tasks:delete_task' task_id=task.id %}"
-                            data-hx-target="#modal-dialog">Delete</a>
-                        {% endif %}
+                    <div class="col-lg-5">
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <p class="small-ital-text">Added by {{ task.author }} on {{ task.added_on }}</p>
+                            </div>
+                            <div class="col-8">
+                                {% if user.is_authenticated and user == task.author %}
+                                <a class="prj-btn" data-hx-get="{% url 'tasks:edit_task' task_id=task.id %}"
+                                    data-hx-target="#modal-dialog">Edit</a>
+                                <a class="prj-btn" data-hx-get="{% url 'tasks:delete_task' task_id=task.id %}"
+                                    data-hx-target="#modal-dialog">Delete</a>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {% empty %}
@@ -45,11 +51,13 @@
         </div>
     </div>
     <div class="modal-footer card-footer">
+        {% if user.is_authenticated and user == project.author %}
         <a class="prj-btn" data-hx-get="{% url 'tasks:add_task' project_id=project.id %}"
             data-hx-target="#modal-dialog">Add Task</a>
         <a class="prj-btn" data-hx-get="{% url 'tasks:edit_project' project_id=project.id %}"
             data-hx-target="#modal-dialog">Edit Project</a>
         <a class="prj-btn" href="{% url 'tasks:delete_project' project_id=project.id %}">Delete Project</a>
+        {% endif %}
         <button type="button" class="prj-btn" data-bs-dismiss="modal">Close</button>
     </div>
 </div>

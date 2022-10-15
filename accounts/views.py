@@ -4,14 +4,10 @@ from django.http import HttpResponse
 from .forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 
 
-def index(request):
-    return render(request, 'index.html')
-
-
 def login_view(request):
     user = request.user
     if user.is_authenticated:
-        return redirect('accounts:index')
+        return redirect('tasks:index')
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
@@ -37,9 +33,8 @@ def register(request):
             raw_password = form.cleaned_data.get('password1')
             account = authenticate(email=email, password=raw_password)
             login(request, account)
-            return redirect('accounts:index')
-        else:
-            context = {'form': form}
+            return HttpResponse(status=204)
+
     else:
         form = RegistrationForm()
         context = {'form': form}
@@ -48,4 +43,4 @@ def register(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('accounts:index')
+    return redirect('tasks:index')
